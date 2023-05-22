@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: digitrecognition-deplyoment
+  name: digitrecognition-deplyoment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: digitrecognition-deplyoment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: digitrecognition-deplyoment
+    spec:
+      containers:
+      - image: docker.io/library/digitrecognition
+        name: digitrecognition
+        resources: {}
+        imagePullPolicy: Never
+status: {}

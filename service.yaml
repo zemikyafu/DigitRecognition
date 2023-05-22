@@ -1,0 +1,29 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: digitrecognition-service
+# spec:
+#   type: NodePort
+#   ports:
+#     - name: http
+#       protocol: TCP
+#       port: 5001
+#       targetPort: 5001
+#       nodePort: 30000
+#   selector:
+#     app: digitrecognition-deplyoment
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: digitrecognition-service
+spec:
+  type: LoadBalancer
+  selector:
+    app:  digitrecognition-deplyoment
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 5001
+  
+
