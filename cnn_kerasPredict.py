@@ -64,7 +64,7 @@ def predict():
 
     # ensure an image was properly uploaded to our endpoint
     if flask.request.method == "POST":
-         print(flask.request.data)
+        
          if flask.request.files.get("image"):
             img_file = flask.request.files['image']
             # Save the image file to a temporary directory
@@ -77,18 +77,15 @@ def predict():
             #return predition result
             img_tensor = np.expand_dims(image, axis=0)
             prediction = model.predict(img_tensor)
-            print(prediction)
+   
             classes=np.argmax(prediction,axis=1)
             predictResult=number2word(classes.item(0))
-            # print("Predict Result is "+ str(predictResult))
-            print("Predict Result is "+predictResult)
 
             # indicate that the request was a success
             data["predictResult"] = predictResult
             data["success"] = True
             
     # return the data dictionary as a JSON response
-    print(data)
     return flask.jsonify(data)
     # return flask.render_template('index.html', predictResult=predictResult, image=img_file.filename)
     
